@@ -1,0 +1,3 @@
+﻿  my_data.cpp
+c:\users\nexis\desktop\fialko\stos fialko\stosmichal\my_data.cpp(123): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  stosmichal.vcxproj -> C:\Users\Nexis\Desktop\fialko\stos fialko\x64\Debug\stosmichal.exe
