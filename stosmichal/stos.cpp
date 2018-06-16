@@ -7,7 +7,6 @@
 #include "messages.h"
 #include "my_interface.h"
 
-FILE *fp;
 
 using namespace std;
 
@@ -144,6 +143,7 @@ void stack::save_all(void(*save_elem)(void* pdata,FILE *fp))
 {
 	if (save_elem!= NULL)
 	{
+		FILE *fp;
 		stack *temp = link;
 		fp = fopen("score.bin", "wb+");
 		fwrite(&n, sizeof(int), 1, fp);
@@ -164,8 +164,8 @@ void stack::load_all(stack* first, void*(*load_elem)(FILE *fp))
 {
 	if (load_elem != NULL)
 	{
-		stack *temp = NULL;
 		FILE *fp;
+		stack *temp = NULL;
 		fp = fopen("score.bin", "rb");
 		//SF przy odczycie tu powstaje GP. Oznacza to, ze Pan nie odnalazl czasu na elementarne testowanie wlasnej aplikacji.
 		//Informuje, ze jesli jeszcze raz dostane projekt w takim stanie, ja anuluje Panu ten projekt i dam znacznie badziej zlozony.
@@ -174,8 +174,9 @@ void stack::load_all(stack* first, void*(*load_elem)(FILE *fp))
 		for (int i = 1;i < n;i++)
 		{
 			temp = new stack;
-			temp->pdata = load_elem(fp);
-			first->link = temp;
+			temp->link = NULL;
+			first->pdata = load_elem(fp);
+			first->link = NULL;
 			first = temp;
 			temp = NULL;
 

@@ -84,18 +84,15 @@ void *load(FILE *fp)
 	int sizeoflastname;
 	int yearr;
 	fread(&sizeoflastname, sizeof(int), 1, fp);
-	char *tab= new char[sizeoflastname + 1];
-	memset(tab, 0, (sizeoflastname + 1));
 	temp->lastname = new char[sizeoflastname+1];
 	if (temp->lastname == NULL)
 	{
 		error(MEMORY_ALLOCATION_PROBLEM);
 	}
 	//strcpy(temp->lastname, a.c_str());  //A jaki sens w tym? a - pusty wiersz.
-	fread(&tab, sizeof(char), sizeoflastname, fp);
+	fread(&temp->lastname, sizeof(char), sizeoflastname, fp);
 	fread(&yearr, sizeof(int), 1, fp);
 	fread(&b, sizeof(int), 1, fp);
-	strcpy(temp->lastname, tab);
 	temp->year = yearr;
 
 
@@ -111,7 +108,6 @@ void *load(FILE *fp)
 		temp->tab = ROBOTYKA;
 		break;
 	}
-		
 	return (void*)temp;
 }
 
